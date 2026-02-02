@@ -8,7 +8,7 @@
 // ==========================================
 // ⚠️ ここを実際のGAS WebアプリURLに変更
 // ==========================================
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbw8eJUBI2EUGFjyzgD4Gz0hMJkOz24WAhF_2U3p3rY4NhlunZFRJ94BJGM-0_DZudVMGQ/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbynaCroXjZVBxTzDwIon4yJPvGk9vs45OD1GIo-NBRS0r91mZCOe-dOfFX9TR7ytCBcfw/exec';
 
 // DOM要素
 const form = document.getElementById('contact-form');
@@ -34,8 +34,9 @@ async function init() {
 const CLEANING_OPTIONS = [
   { name: 'エアコン', enabled: true },
   { name: '水回り', enabled: true },
-  { name: '空室', enabled: true },
-  { name: '定期清掃', enabled: true }
+  { name: '空室・引っ越し前後', enabled: true },
+  { name: '定期清掃', enabled: true },
+  { name: 'その他', enabled: true }
 ];
 
 /**
@@ -136,7 +137,8 @@ async function handleSubmit(e) {
       address: document.getElementById('address').value.trim(),
       cleaning: Array.from(form.querySelectorAll('input[name="cleaning"]:checked'))
         .map(cb => cb.value)
-        .join(', ')
+        .join(', '),
+      notes: document.getElementById('notes').value.trim()
     };
 
     // デモモード
