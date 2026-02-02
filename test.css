@@ -1,0 +1,550 @@
+/* === リセット & ベース === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* プロフェッショナル・クリーン・パレット */
+  /* 信頼感のあるディープブルーと清潔なシアンの組み合わせ */
+  --primary: #0284c7;
+  /* Sky-600: 信頼・プロフェッショナル */
+  --primary-light: #e0f2fe;
+  /* Sky-100: 清潔感・背景 */
+  --primary-vivid: #0ea5e9;
+  /* Sky-500: アクセント・アクション */
+
+  --accent: #f59e0b;
+  /* Amber-500: 注意・必須項目 */
+  --success: #10b981;
+  /* Emerald-500: 完了 */
+
+  /* テキストカラー：真っ黒を使わず、可読性と洗練さを両立 */
+  --text-main: #0f172a;
+  /* Slate-900 */
+  --text-sub: #64748b;
+  /* Slate-500 */
+
+  --bg-body: #f1f5f9;
+  /* Slate-100 */
+  --card-bg: rgba(255, 255, 255, 0.98);
+
+  /* ボーダーとシャドウ */
+  --border-color: #cbd5e1;
+  /* Slate-300 */
+  --border-focus: #38bdf8;
+  /* Sky-400 */
+
+  --radius-card: 24px;
+  --radius-input: 12px;
+  --radius-btn: 50px;
+
+  /* モダンなシャドウ設定 */
+  --shadow-card: 0 20px 40px -4px rgba(2, 132, 199, 0.1), 0 8px 16px -4px rgba(2, 132, 199, 0.05);
+  --shadow-input: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  --shadow-btn: 0 4px 12px rgba(14, 165, 233, 0.3);
+  --shadow-btn-hover: 0 8px 20px rgba(14, 165, 233, 0.4);
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  /* プロっぽさを出すため標準ゴシック優先 */
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  /* 背景装飾 */
+  background-image:
+    radial-gradient(circle at 10% 0%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 100%, rgba(2, 132, 199, 0.08) 0%, transparent 40%);
+}
+
+/* === 背景装飾（上部） === */
+.bg-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 380px;
+  background: linear-gradient(180deg, #0284c7 0%, #0ea5e9 100%);
+  clip-path: ellipse(150% 100% at 50% 0%);
+  z-index: -1;
+}
+
+/* === レイアウト === */
+.container {
+  max-width: 540px;
+  /* 少し幅を狭めてスマートに */
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* === ヘッダー === */
+.header {
+  padding: 40px 0 32px;
+  text-align: center;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 10px 24px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-icon {
+  font-size: 24px;
+  color: white;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.08em;
+}
+
+/* === メインカード === */
+.main {
+  flex: 1;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.card-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+.card-description {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.8;
+}
+
+/* === フォーム === */
+.form-group {
+  margin-bottom: 28px;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.label-icon {
+  font-size: 20px;
+  color: var(--primary-vivid);
+  /* アイコンをアクセントカラーに */
+}
+
+.required {
+  background: var(--accent);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-left: auto;
+  letter-spacing: 0.05em;
+}
+
+.optional {
+  background: #94a3b8;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-left: auto;
+  letter-spacing: 0.05em;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-input);
+  background: #f8fafc;
+  color: var(--text-main);
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-input);
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
+}
+
+.form-textarea::placeholder {
+  color: #94a3b8;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  /* 枠線を少し細く上品に */
+  border-radius: var(--radius-input);
+  background: #f8fafc;
+  color: var(--text-main);
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-input);
+  font-family: inherit;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
+}
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+/* === チェックボックス（タイル型） === */
+.checkbox-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.checkbox-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-input);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.checkbox-item:hover {
+  border-color: var(--primary-vivid);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(14, 165, 233, 0.1);
+}
+
+.checkbox-item.checked {
+  border-color: var(--primary-vivid);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.checkbox-item.checked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-input);
+  border: 2px solid var(--primary-vivid);
+  pointer-events: none;
+}
+
+.checkbox-label {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* 既存のチェックボックスを隠してカスタムデザインにする */
+.checkbox-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  margin-right: 12px;
+  position: relative;
+  cursor: pointer;
+  background: white;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.checkbox-item.checked input[type="checkbox"] {
+  background: var(--primary-vivid);
+  border-color: var(--primary-vivid);
+}
+
+.checkbox-item.checked input[type="checkbox"]::before {
+  content: 'check';
+  font-family: 'Material Symbols Rounded';
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+}
+
+/* === 送信ボタン === */
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-vivid) 0%, var(--primary) 100%);
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  letter-spacing: 0.05em;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-btn-hover);
+  filter: brightness(1.05);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* === 完了メッセージ（モーダル） === */
+.success-message {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  /* 背景を少し暗くしてモーダルを強調 */
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+}
+
+.success-card {
+  background: white;
+  border-radius: var(--radius-card);
+  padding: 56px 40px;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.success-icon {
+  width: 88px;
+  height: 88px;
+  background: #ecfdf5;
+  /* Emerald-50 */
+  color: var(--success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 32px;
+  position: relative;
+}
+
+.success-icon::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 4px solid #f0fdf4;
+  /* Emerald-50 (outer) */
+  opacity: 0.5;
+}
+
+.success-icon span {
+  font-size: 48px;
+}
+
+.success-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.success-text {
+  color: var(--text-sub);
+  margin-bottom: 40px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.reset-btn {
+  padding: 12px 32px;
+  color: var(--primary);
+  background: white;
+  border: 1px solid #e0f2fe;
+  border-radius: var(--radius-btn);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-btn:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-light);
+}
+
+/* === フッター === */
+.footer {
+  text-align: center;
+  padding: 48px 0 24px;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* === レスポンシブ === */
+@media (max-width: 480px) {
+  .bg-decoration {
+    height: 300px;
+    clip-path: ellipse(180% 100% at 50% 0%);
+  }
+
+  .card {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+
+  .checkbox-group {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .checkbox-item {
+    padding: 14px;
+  }
+
+  .logo {
+    padding: 8px 20px;
+  }
+
+  .logo-icon {
+    font-size: 20px;
+  }
+
+  .logo-text {
+    font-size: 16px;
+  }
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ローディングスピナー */
+.loading-spinner,
+.btn-loading,
+.spinner,
+.spinner-small {
+  /* 前回のスタイルを維持または微調整 */
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e2e8f0;
+  border-top-color: var(--primary-vivid);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+.spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
